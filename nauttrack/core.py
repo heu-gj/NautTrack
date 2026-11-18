@@ -195,12 +195,11 @@ class DetectionUncertainty:
 
     def __init__(self, config: TrackerConfig):
         self.config = config
-        self.calibrator = (
-            ResidualCalibrator.load(config.calibration_path)
-            if config.calibration_path else None
-        )
-        if config.uncertainty_mode == "calibrated" and self.calibrator is None:
-            raise ValueError("calibrated uncertainty requires tracker.calibration_path")
+        self.calibrator = None
+        if config.uncertainty_mode == "calibrated":
+            if not config.calibration_path:
+                raise ValueError("calibrated uncertainty requires tracker.calibration_path")
+            self.calibrator = ResidualCalibrator.load(config.calibration_path)
 
     def measurement_covariance(self, box, score: float, image_shape: tuple[int, int]) -> np.ndarray:
         x1, y1, x2, y2 = np.asarray(box, dtype=np.float64).reshape(4)
