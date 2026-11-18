@@ -21,6 +21,7 @@ Create an environment with Python 3.10+ and install PyTorch for your CUDA/CPU se
 git clone https://github.com/heu-gj/NautTrack.git
 cd NautTrack
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ## Run NautTrack on an RGB video
