@@ -1,0 +1,6 @@
+ultralytics==8.4.215
+numpy>=1.23.0
+scipy>=1.10.0
+opencv-python>=4.7.0
+PyYAML>=6.0
+pytest>=8.0.0
